@@ -14,12 +14,13 @@ public class MilkCollections
 {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long Id;
+	
 	private Date date;
 	private String section;
 	private double quantity;
     private double fatContent;
     private double snf;
-    private int rate;
+    private double rate;
 	private double amount;
 	@ManyToOne
 	@JoinColumn(name = "farmId", nullable = false)
@@ -60,11 +61,11 @@ public class MilkCollections
 	public void setSnf(double snf) {
 		this.snf = snf;
 	}
-	public int getRate() {
+	public double getRate(double d, double e) {
 		return rate;
 	}
-	public void setRate(int rate) {
-		this.rate = rate;
+	public void setRate(double rate2) {
+		this.rate = rate2;
 	}
 	public double getAmount() {
 		return amount;
