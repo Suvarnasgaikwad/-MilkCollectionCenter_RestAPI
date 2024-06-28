@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+
 import com.Java.MilkCollection.Model.Farmer;
 import com.Java.MilkCollection.Service.FarmService;
 import org.springframework.data.domain.Page;
@@ -29,8 +31,6 @@ public class FarmController
 	@Autowired
 	private FarmService farmService;
 
-	
-	
 	public FarmController(FarmService farmService) {
 		super();
 		this.farmService = farmService;
@@ -72,5 +72,18 @@ public class FarmController
 		return farmService.updateFarm(farmId, farm);
     	 
      }
-	  
+	  @GetMapping("/farmers/search")
+	    public List<Farmer> getFarmers(@RequestParam String query) {
+	        return farmService.findByfarmNameContainingIgnoreCase(query);
+	    }
+//	  @GetMapping("/farmers")
+//	    public List<Farmer> getAllFarmers() {
+//	        return farmService.FarmList();
+//	    }
+//	  @GetMapping("/farmer")
+//	    public ResponseEntity<List<Farmer>> searchFarmers(@RequestParam String query) {
+//	        List<Farmer> farmers = farmService.searchFarmers(query);
+//	        return ResponseEntity.ok(farmers);
+//	    }
 }
+

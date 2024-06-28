@@ -2,19 +2,22 @@ package com.Java.MilkCollection.Model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 public class MilkCollections 
 {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long Id;
-	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date date;
 	private String section;
 	private double quantity;
@@ -22,6 +25,7 @@ public class MilkCollections
     private double snf;
     private double rate;
 	private double amount;
+	private boolean chekbox;
 	@ManyToOne
 	@JoinColumn(name = "farmId", nullable = false)
 	private Farmer farm;
@@ -31,6 +35,7 @@ public class MilkCollections
 	public void setId(long id) {
 		Id = id;
 	}
+	
 	public Date getDate() {
 		return date;
 	}
@@ -61,11 +66,12 @@ public class MilkCollections
 	public void setSnf(double snf) {
 		this.snf = snf;
 	}
-	public double getRate(double d, double e) {
+	
+	public double getRate() {
 		return rate;
 	}
-	public void setRate(double rate2) {
-		this.rate = rate2;
+	public void setRate(double rate) {
+		this.rate = rate;
 	}
 	public double getAmount() {
 		return amount;
@@ -79,8 +85,17 @@ public class MilkCollections
 	public void setFarm(Farmer farm) {
 		this.farm = farm;
 	}
-	public MilkCollections(long id, Date date, String section, double quantity, double fatContent, double snf, int rate,
-			double amount, Farmer farm) {
+	
+	
+	
+	public boolean getChekbox() {
+		return chekbox;
+	}
+	public void setChekbox(boolean chekbox) {
+		this.chekbox = chekbox;
+	}
+	public MilkCollections(long id, Date date, String section, double quantity, double fatContent, double snf,
+			double rate, double amount, boolean chekbox, Farmer farm) {
 		super();
 		Id = id;
 		this.date = date;
@@ -90,6 +105,7 @@ public class MilkCollections
 		this.snf = snf;
 		this.rate = rate;
 		this.amount = amount;
+		this.chekbox = chekbox;
 		this.farm = farm;
 	}
 	public MilkCollections() {
@@ -99,8 +115,8 @@ public class MilkCollections
 	@Override
 	public String toString() {
 		return "MilkCollections [Id=" + Id + ", date=" + date + ", section=" + section + ", quantity=" + quantity
-				+ ", fatContent=" + fatContent + ", snf=" + snf + ", rate=" + rate + ", amount=" + amount + ", farm="
-				+ farm + "]";
+				+ ", fatContent=" + fatContent + ", snf=" + snf + ", rate=" + rate + ", amount=" + amount + ", chekbox="
+				+ chekbox + ", farm=" + farm + "]";
 	}
 	
 	

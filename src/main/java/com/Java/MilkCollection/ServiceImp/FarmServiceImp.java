@@ -72,4 +72,15 @@ public class FarmServiceImp implements FarmService {
 	        }
 	    }
 
+	@Override
+	public List<Farmer> findByfarmNameContainingIgnoreCase(String q) {
+		return farmRepo.findByfarmNameContainingIgnoreCase(q);
+	}
+
+	@Override
+	public List<Farmer> searchFarmers(String query) {
+		return 	farmRepo.findByfarmNameContainingIgnoreCase(query);
+	
+	}
+
 }

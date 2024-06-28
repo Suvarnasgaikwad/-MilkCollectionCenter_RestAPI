@@ -15,5 +15,7 @@ public interface FarmService
     Farmer updateFarm(int farmId, Farmer farm);
     Farmer getFarm(int farmId);
     Page<Farmer>getFirstTenFarmer(Pageable pageable,String search);
+	List<Farmer> findByfarmNameContainingIgnoreCase(String q);
+	List<Farmer> searchFarmers(String query);
 
 }

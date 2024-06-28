@@ -1,5 +1,7 @@
 package com.Java.MilkCollection.ServiceImp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,9 @@ public class FatSnfRateServiceImp
 	                         .map(FatSnfRate::getRate)
 	                         .orElse(null);
 	        
+	    }
+		public List<Double> getAllRates() {
+	        return repository.findAllRates();
 	    }
 
 }
