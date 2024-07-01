@@ -14,10 +14,9 @@ import com.Java.MilkCollection.Service.FarmService;
 
 @Service
 public class FarmServiceImp implements FarmService {
-    
+
 	@Autowired
 	private FarmRepo farmRepo;
-	
 
 	public FarmServiceImp(FarmRepo farmRepo) {
 		super();
@@ -26,51 +25,51 @@ public class FarmServiceImp implements FarmService {
 
 	@Override
 	public String SaveFarm(Farmer farm) {
-	farmRepo.save(farm);
+		farmRepo.save(farm);
 		return "Save data Successfully";
 	}
 
 	@Override
 	public List<Farmer> FarmList() {
-		return  farmRepo.findAll();
-		
+		return farmRepo.findAll();
+
 	}
 
 	@Override
 	public String deleteFarm(int farmId) {
-		boolean value =farmRepo.existsById(farmId);
+		boolean value = farmRepo.existsById(farmId);
 
 		if (value == false) {
 			return "Given Id is not available";
 		}
 		farmRepo.deleteById(farmId);
 		return "Delete Data Successfully";
-		
+
 	}
 
 	@Override
 	public Farmer updateFarm(int farmId, Farmer farm) {
-		Farmer oldfarm =farmRepo.findById(farmId).get();
+		Farmer oldfarm = farmRepo.findById(farmId).get();
 		oldfarm.setFarmName(farm.getFarmName());
 		oldfarm.setContactInfo(farm.getContactInfo());
 		return farmRepo.save(oldfarm);
-		
+
 	}
 
 	@Override
 	public Farmer getFarm(int farmId) {
 		return farmRepo.findById(farmId).get();
-		
+
 	}
-	 public Page<Farmer> getFirstTenFarmer(Pageable pageable,String search) {
-		  if (search.isEmpty()) {
-	        return farmRepo.findAll(pageable);
-		  }
-		  else {
-	            return farmRepo.findByfarmNameContainingIgnoreCase(search, pageable);
-			
-	        }
-	    }
+
+	public Page<Farmer> getFirstTenFarmer(Pageable pageable, String search) {
+		if (search.isEmpty()) {
+			return farmRepo.findAll(pageable);
+		} else {
+			return farmRepo.findByfarmNameContainingIgnoreCase(search, pageable);
+
+		}
+	}
 
 	@Override
 	public List<Farmer> findByfarmNameContainingIgnoreCase(String q) {
@@ -79,8 +78,8 @@ public class FarmServiceImp implements FarmService {
 
 	@Override
 	public List<Farmer> searchFarmers(String query) {
-		return 	farmRepo.findByfarmNameContainingIgnoreCase(query);
-	
+		return farmRepo.findByfarmNameContainingIgnoreCase(query);
+
 	}
 
 }

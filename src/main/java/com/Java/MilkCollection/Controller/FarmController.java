@@ -22,12 +22,12 @@ import org.springframework.http.ResponseEntity;
 import com.Java.MilkCollection.Model.Farmer;
 import com.Java.MilkCollection.Service.FarmService;
 import org.springframework.data.domain.Page;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/")
 @Validated
-public class FarmController 
-{   
+public class FarmController {
 	@Autowired
 	private FarmService farmService;
 
@@ -36,46 +36,44 @@ public class FarmController
 		this.farmService = farmService;
 	}
 
-
-
 	@PostMapping("/farm")
-	public String SaveFarmer(@Valid @RequestBody Farmer farm)
-	{ 
-		return farmService.SaveFarm(farm);	
+	public String SaveFarmer(@Valid @RequestBody Farmer farm) {
+		return farmService.SaveFarm(farm);
 	}
+
 	@GetMapping("/farm/{farmId}")
-	public Farmer ShowFarm(@PathVariable int farmId)
-	{
-		return farmService.getFarm(farmId);		
+	public Farmer ShowFarm(@PathVariable int farmId) {
+		return farmService.getFarm(farmId);
 	}
-     
+
 	@GetMapping("/farm")
-	public List<Farmer> Farmlist()
-	{
-		return farmService.FarmList();		
+	public List<Farmer> Farmlist() {
+		return farmService.FarmList();
 	}
+
 	@GetMapping("/farms")
-	public  Page<Farmer> firstFarmlist(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "2") int size, @RequestParam(defaultValue = "") String search)
-	{
-		 Pageable pageable=PageRequest.of(page, size);
-		return farmService.getFirstTenFarmer(pageable,search);		
+	public Page<Farmer> firstFarmlist(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "2") int size, @RequestParam(defaultValue = "") String search) {
+		Pageable pageable = PageRequest.of(page, size);
+		return farmService.getFirstTenFarmer(pageable, search);
 	}
+
 	@DeleteMapping("/farm/{farmId}")
-	public String delFarm(@PathVariable int farmId)
-	{
-		return farmService.deleteFarm(farmId);		
+	public String delFarm(@PathVariable int farmId) {
+		return farmService.deleteFarm(farmId);
 	}
-	  @PutMapping("/farm/{farmId}")
-     public Farmer updateFarm(@PathVariable int farmId,@RequestBody Farmer farm)
-     {
-    	 
+
+	@PutMapping("/farm/{farmId}")
+	public Farmer updateFarm(@PathVariable int farmId, @RequestBody Farmer farm) {
+
 		return farmService.updateFarm(farmId, farm);
-    	 
-     }
-	  @GetMapping("/farmers/search")
-	    public List<Farmer> getFarmers(@RequestParam String query) {
-	        return farmService.findByfarmNameContainingIgnoreCase(query);
-	    }
+
+	}
+
+	@GetMapping("/farmers/search")
+	public List<Farmer> getFarmers(@RequestParam String query) {
+		return farmService.findByfarmNameContainingIgnoreCase(query);
+	}
 //	  @GetMapping("/farmers")
 //	    public List<Farmer> getAllFarmers() {
 //	        return farmService.FarmList();
@@ -86,4 +84,3 @@ public class FarmController
 //	        return ResponseEntity.ok(farmers);
 //	    }
 }
-

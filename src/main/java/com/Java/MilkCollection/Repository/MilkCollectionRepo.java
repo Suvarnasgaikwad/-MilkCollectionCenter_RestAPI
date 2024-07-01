@@ -11,5 +11,5 @@ import com.Java.MilkCollection.Model.MilkCollections;
 
 @Repository
 public interface MilkCollectionRepo extends JpaRepository<MilkCollections, Long> {
-	  List<MilkCollections> findBychekbox(boolean chekbox);
+	//  List<MilkCollections> findBychekbox(boolean chekbox);
 }

@@ -9,25 +9,22 @@ import com.Java.MilkCollection.Model.FatSnfRate;
 import com.Java.MilkCollection.Repository.FatSnfRateRepository;
 
 @Service
-public class FatSnfRateServiceImp 
-{
-	   @Autowired(required=true)
-	    private FatSnfRateRepository repository;
-	   
-		public FatSnfRateServiceImp(FatSnfRateRepository repository) {
+public class FatSnfRateServiceImp {
+	@Autowired(required = true)
+	private FatSnfRateRepository repository;
+
+	public FatSnfRateServiceImp(FatSnfRateRepository repository) {
 		super();
 		this.repository = repository;
 	}
 
+	public Double getRate(double fatContent, double snfContent) {
+		return repository.findByFatContentAndSnfContent(fatContent, snfContent).map(FatSnfRate::getRate).orElse(null);
 
-		public Double getRate(double fatContent, double snfContent) {
-	        return repository.findByFatContentAndSnfContent(fatContent, snfContent)
-	                         .map(FatSnfRate::getRate)
-	                         .orElse(null);
-	        
-	    }
-		public List<Double> getAllRates() {
-	        return repository.findAllRates();
-	    }
+	}
+
+	public List<Double> getAllRates() {
+		return repository.findAllRates();
+	}
 
 }

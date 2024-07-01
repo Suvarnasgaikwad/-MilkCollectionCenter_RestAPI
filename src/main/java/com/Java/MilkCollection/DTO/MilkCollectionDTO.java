@@ -13,6 +13,7 @@ public class MilkCollectionDTO
 	
 	private Date date;
 	private String section;
+	private String milkType;
 	private double quantity;
     private double fatContent;
     private double snf;
@@ -21,6 +22,13 @@ public class MilkCollectionDTO
 	private boolean chekbox;
 
 	private Farmer farm;
+	public String getMilkType() {
+		return milkType;
+	}
+
+	public void setMilkType(String milkType) {
+		this.milkType = milkType;
+	}
 
 	public long getId() {
 		return Id;

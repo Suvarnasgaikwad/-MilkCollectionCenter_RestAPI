@@ -33,20 +33,15 @@ public class MilkCollectionServiceImp implements MilkCollectionService {
 	}
 
 	@Override
-	public List<MilkCollections> getAllfarmerCollections(boolean chekbox) {
-
-		return milkRepo.findBychekbox(chekbox);
-	}
-
-	@Override
 	public MilkCollections saveCollection(MilkCollectionDTO milkcollectdto) {
 		MilkCollections milkdata = new MilkCollections();
 		milkdata.setChekbox(milkcollectdto.isChekbox());
 		milkdata.setSection(milkcollectdto.getSection());
+		milkdata.setMilkType(milkcollectdto.getMilkType());
 		milkdata.setDate(milkcollectdto.getDate());
-		System.out.println(milkcollectdto.getDate());
 		milkdata.setFarm(milkcollectdto.getFarm());
 		milkdata.setQuantity(milkcollectdto.getQuantity());
+
 		double fatContent = milkcollectdto.getFatContent();
 		double snfContent = milkcollectdto.getSnf();
 		if (snfContent != 0.0 && fatContent != 0.0) {
@@ -65,6 +60,12 @@ public class MilkCollectionServiceImp implements MilkCollectionService {
 		}
 		System.out.println(milkdata);
 		return milkRepo.save(milkdata);
+	}
+
+	@Override
+	public List<MilkCollections> getAllfarmerCollections() {
+		return milkRepo.findAll();
+
 	}
 
 }

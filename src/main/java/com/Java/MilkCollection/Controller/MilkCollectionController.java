@@ -22,8 +22,7 @@ import com.Java.MilkCollection.Service.MilkCollectionService;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/")
-public class MilkCollectionController 
-{
+public class MilkCollectionController {
 	@Autowired
 	private MilkCollectionService milkcollect;
 
@@ -32,27 +31,16 @@ public class MilkCollectionController
 		this.milkcollect = milkcollect;
 	}
 
-//	@PostMapping("/milkcollection")
-//	public String SaveFarmer( @RequestBody MilkCollections milk)
-//	{   
-//      System.out.println(milk);
-//		return milkcollect.saveCollection(milk);
-//	}
-	
 	@PostMapping("/milkcollection")
-    public ResponseEntity<MilkCollections> addMilkCollection(@RequestBody MilkCollectionDTO milkCollectionDTO) {
-		System.out.println(milkCollectionDTO);
+	public ResponseEntity<MilkCollections> addMilkCollection(@RequestBody MilkCollectionDTO milkCollectionDTO) {
+
 		MilkCollections milkCollection = milkcollect.saveCollection(milkCollectionDTO);
-      
 		return ResponseEntity.ok(milkCollection);
-    }
-	
-	
+	}
+
 	@GetMapping("/getcollection")
-	public List<MilkCollections> getAll(@RequestParam boolean chekbox)
-	{
-		return milkcollect.getAllfarmerCollections(chekbox);
-		
+	public List<MilkCollections> getAll() {
+		return milkcollect.getAllfarmerCollections();
 	}
 
 }

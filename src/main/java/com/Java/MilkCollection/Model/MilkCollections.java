@@ -20,11 +20,18 @@ public class MilkCollections
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date date;
 	private String section;
+	private String milkType;
 	private double quantity;
     private double fatContent;
     private double snf;
     private double rate;
 	private double amount;
+	public boolean isChekbox() {
+		return chekbox;
+	}
+	public void setChekbox(boolean chekbox) {
+		this.chekbox = chekbox;
+	}
 	private boolean chekbox;
 	@ManyToOne
 	@JoinColumn(name = "farmId", nullable = false)
@@ -47,6 +54,13 @@ public class MilkCollections
 	}
 	public void setSection(String section) {
 		this.section = section;
+	}
+	
+	public String getMilkType() {
+		return milkType;
+	}
+	public void setMilkType(String milkType) {
+		this.milkType = milkType;
 	}
 	public double getQuantity() {
 		return quantity;
@@ -86,37 +100,26 @@ public class MilkCollections
 		this.farm = farm;
 	}
 	
+
 	
-	
-	public boolean getChekbox() {
-		return chekbox;
+	public MilkCollections() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public void setChekbox(boolean chekbox) {
-		this.chekbox = chekbox;
-	}
-	public MilkCollections(long id, Date date, String section, double quantity, double fatContent, double snf,
-			double rate, double amount, boolean chekbox, Farmer farm) {
+	public MilkCollections(long id, Date date, String section, String milkType, double quantity, double fatContent,
+			double snf, double rate, double amount,boolean chekbox , Farmer farm) {
 		super();
 		Id = id;
 		this.date = date;
 		this.section = section;
+		this.milkType = milkType;
 		this.quantity = quantity;
 		this.fatContent = fatContent;
 		this.snf = snf;
 		this.rate = rate;
 		this.amount = amount;
-		this.chekbox = chekbox;
+	    this.chekbox=chekbox;
 		this.farm = farm;
-	}
-	public MilkCollections() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	@Override
-	public String toString() {
-		return "MilkCollections [Id=" + Id + ", date=" + date + ", section=" + section + ", quantity=" + quantity
-				+ ", fatContent=" + fatContent + ", snf=" + snf + ", rate=" + rate + ", amount=" + amount + ", chekbox="
-				+ chekbox + ", farm=" + farm + "]";
 	}
 	
 	
